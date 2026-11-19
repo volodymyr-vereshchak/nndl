@@ -107,3 +107,30 @@ h4, h5 { font-size: 1rem; margin-top: 1.6rem; }
 .toc-main { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.95rem; }
 .toc-main h2 { margin-top: 0; }
 .toc-main > ul > li { margin: 0.9rem 0; }
+
+/* закладки и место чтения */
+.bm-panel { margin: 0 0 1.1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
+.bm-continue { display: block; padding: 0.5rem 0.6rem; margin-bottom: 0.8rem; border-radius: 6px;
+  background: var(--accent); color: var(--bg) !important; font-weight: 600; }
+.bm-continue:hover { text-decoration: none; opacity: .9; }
+.bm-continue small, .bm-panel li small { display: block; font-weight: 400; opacity: .85; }
+.bm-head { font-weight: 700; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+.bm-panel button { font: inherit; cursor: pointer; border: 1px solid var(--rule); background: var(--bg);
+  color: var(--fg); border-radius: 4px; padding: 0 0.4rem; }
+.bm-panel button:hover { border-color: var(--accent); color: var(--accent); }
+.bm-empty { color: var(--muted); }
+.bm-panel ul { list-style: none; padding: 0; margin: 0; max-height: 40vh; overflow-y: auto; }
+.bm-panel li { display: flex; gap: 0.3rem; align-items: flex-start; margin: 0.35rem 0; }
+.bm-panel li a { flex: 1; color: var(--fg); }
+.bm-panel li small { color: var(--muted); }
+.bm-panel .bm-del { border: none; background: none; color: var(--muted); font-size: 1rem; line-height: 1; }
+.bm-fab { position: fixed; right: 18px; bottom: 18px; width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--side-bg); font-size: 1.3rem; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15); z-index: 5; }
+.bm-fab:hover { border-color: var(--accent); }
+.bm-toast { position: fixed; right: 74px; bottom: 26px; background: var(--fg); color: var(--bg);
+  padding: 0.35rem 0.8rem; border-radius: 6px; font: 0.8rem system-ui, sans-serif; z-index: 6; }
+.bm-flash { background: color-mix(in srgb, var(--accent) 18%, transparent); transition: background 1.5s; border-radius: 3px; }
+.bm-cover { display: inline-block; margin-top: 0.6rem; padding: 0.5rem 0.9rem; border-radius: 6px;
+  background: var(--accent); color: var(--bg) !important; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+.bm-cover:hover { text-decoration: none; opacity: .9; }
