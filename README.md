@@ -1,0 +1,13 @@
+# Нейронные сети и глубокое обучение — русский перевод
+
+Перевод книги Майкла Нильсена [«Neural Networks and Deep Learning»](http://neuralnetworksanddeeplearning.com) на русский язык.
+
+- **Читать онлайн:** https://volodymyr-vereshchak.github.io/nndl/
+- **PDF:** [nndl-ru.pdf](nndl-ru.pdf)
+
+Сайт статический и работает офлайн: скачайте репозиторий и откройте `index.html`.
+
+Переведены все главы и приложение. Код программ сохранён без изменений, переведены комментарии и docstring'и.
+Подписи на растровых рисунках оставлены на английском (см. раздел «От переводчика»).
+
+Лицензия: оригинал и перевод распространяются по [CC BY-NC 3.0](https://creativecommons.org/licenses/by-nc/3.0/deed.ru). Автор оригинала — Michael A. Nielsen.

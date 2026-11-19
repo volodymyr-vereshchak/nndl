@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Нейронные сети и глубокое обучение</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], tags: 'none' },
+      svg: { fontCache: 'global' },
+      options: { enableMenu: false }
+    };
+  </script>
+  <script defer src="mathjax.js"></script>
+</head>
+<body>
+<input type="checkbox" id="menu-toggle" />
+<label for="menu-toggle" class="menu-btn" title="Оглавление">☰</label>
+<aside class="sidebar">
+  <a class="book-title" href="index.html">Нейронные сети и глубокое
+обучение</a>
+  <div class="book-author">Майкл Нильсен</div>
+  <nav class="toc">
+<ul>
+<li><a href="part00.html" id="toc-от-переводчика">От
+переводчика</a></li>
+<li><a href="part01.html" id="toc-о-чём-эта-книга">О чём эта
+книга</a>
+<ul>
+<li><a href="part01.html#подход-основанный-на-принципах"
+id="toc-подход-основанный-на-принципах">Подход, основанный на
+принципах</a></li>
+<li><a href="part01.html#практический-подход"
+id="toc-практический-подход">Практический подход</a></li>
+</ul></li>
+<li><a href="part02.html"
+id="toc-об-упражнениях-и-задачах">Об упражнениях и задачах</a></li>
+<li><a
+href="part03.html"
+id="toc-распознавание-рукописных-цифр-с-помощью-нейронных-сетей"><span
+class="toc-section-number">1</span> Распознавание рукописных цифр с
+помощью нейронных сетей</a>
+<ul>
+<li><a
+href="part03.html#перцептроны"
+id="toc-перцептроны"><span class="toc-section-number">1.1</span>
+Перцептроны</a></li>
+<li><a
+href="part03.html#сигмоидные-нейроны"
+id="toc-сигмоидные-нейроны"><span class="toc-section-number">1.2</span>
+Сигмоидные нейроны</a></li>
+<li><a
+href="part03.html#архитектура-нейронных-сетей"
+id="toc-архитектура-нейронных-сетей"><span
+class="toc-section-number">1.3</span> Архитектура нейронных
+сетей</a></li>
+<li><a
+href="part03.html#простая-сеть-для-классификации-рукописных-цифр"
+id="toc-простая-сеть-для-классификации-рукописных-цифр"><span
+class="toc-section-number">1.4</span> Простая сеть для классификации
+рукописных цифр</a></li>
+<li><a
+href="part03.html#sec:1.5"
+id="toc-sec:1.5"><span class="toc-section-number">1.5</span> Обучение с
+помощью градиентного спуска</a></li>
+<li><a
+href="part03.html#sec:1.7"
+id="toc-sec:1.7"><span class="toc-section-number">1.6</span> Реализация
+сети для классификации цифр</a></li>
+<li><a
+href="part03.html#sec:1.8"
+id="toc-sec:1.8"><span class="toc-section-number">1.7</span> На пути к
+глубокому обучению</a></li>
+</ul></li>
+<li><a
+href="part04.html"
+id="toc-как-работает-алгоритм-обратного-распространения-ошибки"><span
+class="toc-section-number">2</span> Как работает алгоритм обратного
+распространения ошибки</a>
+<ul>
+<li><a
+href="part04.html#разминка-быстрый-матричный-способ-вычисления-выхода-нейронной-сети"
+id="toc-разминка-быстрый-матричный-способ-вычисления-выхода-нейронной-сети"><span
+class="toc-section-number">2.1</span> Разминка: быстрый матричный способ
+вычисления выхода нейронной сети</a></li>
+<li><a
+href="part04.html#два-предположения-о-функции-стоимости"
+id="toc-два-предположения-о-функции-стоимости"><span
+class="toc-section-number">2.2</span> Два предположения о функции
+стоимости</a></li>
+<li><a
+href="part04.html#произведение-адамара-sodott"
+id="toc-произведение-адамара-sodott"><span
+class="toc-section-number">2.3</span> Произведение Адамара, <span
+class="math inline">\(s\odot{}t\)</span></a></li>
+<li><a
+href="part04.html#sec:2.4"
+id="toc-sec:2.4"><span class="toc-section-number">2.4</span> Четыре
+фундаментальных уравнения обратного распространения</a></li>
+<li><a
+href="part04.html#sec:2.5"
+id="toc-sec:2.5"><span class="toc-section-number">2.5</span>
+Доказательство четырёх фундаментальных уравнений (необязательный
+раздел)</a></li>
+<li><a
+href="part04.html#sec:2.6"
+id="toc-sec:2.6"><span class="toc-section-number">2.6</span> Алгоритм
+обратного распространения ошибки</a></li>
+<li><a
+href="part04.html#sec:2.7"
+id="toc-sec:2.7"><span class="toc-section-number">2.7</span> Код
+обратного распространения</a></li>
+<li><a
+href="part04.html#sec:2.8"
+id="toc-sec:2.8"><span class="toc-section-number">2.8</span> В каком
+смысле обратное распространение — быстрый алгоритм?</a></li>
+<li><a
+href="part04.html#sec:2.9"
+id="toc-sec:2.9"><span class="toc-section-number">2.9</span> Обратное
+распространение: общая картина</a></li>
+</ul></li>
+<li><a href="part05.html" id="toc-sec:3.1"><span
+class="toc-section-number">3</span> Как улучшить обучение нейронных
+сетей</a>
+<ul>
+<li><a
+href="part05.html#функция-стоимости-на-основе-перекрёстной-энтропии"
+id="toc-функция-стоимости-на-основе-перекрёстной-энтропии"><span
+class="toc-section-number">3.1</span> Функция стоимости на основе
+перекрёстной энтропии</a></li>
+<li><a href="part05.html#sec:3.2" id="toc-sec:3.2"><span
+class="toc-section-number">3.2</span> Переобучение и
+регуляризация</a></li>
+<li><a href="part05.html#sec:3.3" id="toc-sec:3.3"><span
+class="toc-section-number">3.3</span> Инициализация весов</a></li>
+<li><a href="part05.html#sec:3.4" id="toc-sec:3.4"><span
+class="toc-section-number">3.4</span> Снова о распознавании почерка:
+код</a></li>
+<li><a href="part05.html#sec:3.5" id="toc-sec:3.5"><span
+class="toc-section-number">3.5</span> Как выбирать гиперпараметры
+нейронной сети?</a></li>
+<li><a href="part05.html#sec:3.6" id="toc-sec:3.6"><span
+class="toc-section-number">3.6</span> Другие приёмы</a></li>
+</ul></li>
+<li><a
+href="part06.html"
+id="toc-наглядное-доказательство-того-что-нейронные-сети-могут-вычислить-любую-функцию"><span
+class="toc-section-number">4</span> Наглядное доказательство того, что
+нейронные сети могут вычислить любую функцию</a>
+<ul>
+<li><a
+href="part06.html#две-оговорки"
+id="toc-две-оговорки"><span class="toc-section-number">4.1</span> Две
+оговорки</a></li>
+<li><a
+href="part06.html#универсальность-для-одного-входа-и-одного-выхода"
+id="toc-универсальность-для-одного-входа-и-одного-выхода"><span
+class="toc-section-number">4.2</span> Универсальность для одного входа и
+одного выхода</a></li>
+<li><a
+href="part06.html#много-входных-переменных"
+id="toc-много-входных-переменных"><span
+class="toc-section-number">4.3</span> Много входных переменных</a></li>
+<li><a
+href="part06.html#за-пределами-сигмоидных-нейронов"
+id="toc-за-пределами-сигмоидных-нейронов"><span
+class="toc-section-number">4.4</span> За пределами сигмоидных
+нейронов</a></li>
+<li><a
+href="part06.html#исправляем-ступенчатые-функции"
+id="toc-исправляем-ступенчатые-функции"><span
+class="toc-section-number">4.5</span> Исправляем ступенчатые
+функции</a></li>
+<li><a
+href="part06.html#заключение"
+id="toc-заключение">Заключение</a></li>
+</ul></li>
+<li><a href="part07.html"
+id="toc-почему-глубокие-нейронные-сети-трудно-обучать"><span
+class="toc-section-number">5</span> Почему глубокие нейронные сети
+трудно обучать?</a>
+<ul>
+<li><a
+href="part07.html#проблема-исчезающего-градиента"
+id="toc-проблема-исчезающего-градиента"><span
+class="toc-section-number">5.1</span> Проблема исчезающего
+градиента</a></li>
+<li><a
+href="part07.html#что-вызывает-проблему-исчезающего-градиента-нестабильные-градиенты-в-глубоких-нейронных-сетях"
+id="toc-что-вызывает-проблему-исчезающего-градиента-нестабильные-градиенты-в-глубоких-нейронных-сетях"><span
+class="toc-section-number">5.2</span> Что вызывает проблему исчезающего
+градиента? Нестабильные градиенты в глубоких нейронных сетях</a></li>
+<li><a
+href="part07.html#нестабильные-градиенты-в-более-сложных-сетях"
+id="toc-нестабильные-градиенты-в-более-сложных-сетях"><span
+class="toc-section-number">5.3</span> Нестабильные градиенты в более
+сложных сетях</a></li>
+<li><a
+href="part07.html#другие-препятствия-на-пути-глубокого-обучения"
+id="toc-другие-препятствия-на-пути-глубокого-обучения"><span
+class="toc-section-number">5.4</span> Другие препятствия на пути
+глубокого обучения</a></li>
+</ul></li>
+<li><a href="part08.html" id="toc-глубокое-обучение"><span
+class="toc-section-number">6</span> Глубокое обучение</a>
+<ul>
+<li><a href="part08.html#subseq:cnn"
+id="toc-subseq:cnn"><span class="toc-section-number">6.1</span>
+Знакомство со свёрточными сетями</a></li>
+<li><a
+href="part08.html#свёрточные-нейронные-сети-на-практике"
+id="toc-свёрточные-нейронные-сети-на-практике"><span
+class="toc-section-number">6.2</span> Свёрточные нейронные сети на
+практике</a></li>
+<li><a href="part08.html#код-наших-свёрточных-сетей"
+id="toc-код-наших-свёрточных-сетей"><span
+class="toc-section-number">6.3</span> Код наших свёрточных
+сетей</a></li>
+<li><a
+href="part08.html#недавний-прогресс-в-распознавании-изображений"
+id="toc-недавний-прогресс-в-распознавании-изображений"><span
+class="toc-section-number">6.4</span> Недавний прогресс в распознавании
+изображений</a></li>
+<li><a
+href="part08.html#другие-подходы-к-глубоким-нейронным-сетям"
+id="toc-другие-подходы-к-глубоким-нейронным-сетям"><span
+class="toc-section-number">6.5</span> Другие подходы к глубоким
+нейронным сетям</a></li>
+<li><a href="part08.html#о-будущем-нейронных-сетей"
+id="toc-о-будущем-нейронных-сетей"><span
+class="toc-section-number">6.6</span> О будущем нейронных сетей</a></li>
+</ul></li>
+<li><a
+href="part09.html"
+id="toc-приложение.-существует-ли-простой-алгоритм-интеллекта">Приложение.
+Существует ли простой алгоритм интеллекта?</a></li>
+</ul>
+  </nav>
+</aside>
+<main>
+<header class="cover">
+  <h1>Нейронные сети и глубокое обучение</h1>
+  <p class="subtitle">Майкл Нильсен</p>
+  <p class="note">Перевод на русский язык. Оригинал: <a href="http://neuralnetworksanddeeplearning.com">neuralnetworksanddeeplearning.com</a>.
+  Лицензия <a href="https://creativecommons.org/licenses/by-nc/3.0/deed.ru">CC BY-NC 3.0</a>.</p>
+</header>
+<article>
+<nav class="toc toc-main">
+<h2>Оглавление</h2>
+<ul>
+<li><a href="part00.html" id="toc-от-переводчика">От
+переводчика</a></li>
+<li><a href="part01.html" id="toc-о-чём-эта-книга">О чём эта
+книга</a>
+<ul>
+<li><a href="part01.html#подход-основанный-на-принципах"
+id="toc-подход-основанный-на-принципах">Подход, основанный на
+принципах</a></li>
+<li><a href="part01.html#практический-подход"
+id="toc-практический-подход">Практический подход</a></li>
+</ul></li>
+<li><a href="part02.html"
+id="toc-об-упражнениях-и-задачах">Об упражнениях и задачах</a></li>
+<li><a
+href="part03.html"
+id="toc-распознавание-рукописных-цифр-с-помощью-нейронных-сетей"><span
+class="toc-section-number">1</span> Распознавание рукописных цифр с
+помощью нейронных сетей</a>
+<ul>
+<li><a
+href="part03.html#перцептроны"
+id="toc-перцептроны"><span class="toc-section-number">1.1</span>
+Перцептроны</a></li>
+<li><a
+href="part03.html#сигмоидные-нейроны"
+id="toc-сигмоидные-нейроны"><span class="toc-section-number">1.2</span>
+Сигмоидные нейроны</a></li>
+<li><a
+href="part03.html#архитектура-нейронных-сетей"
+id="toc-архитектура-нейронных-сетей"><span
+class="toc-section-number">1.3</span> Архитектура нейронных
+сетей</a></li>
+<li><a
+href="part03.html#простая-сеть-для-классификации-рукописных-цифр"
+id="toc-простая-сеть-для-классификации-рукописных-цифр"><span
+class="toc-section-number">1.4</span> Простая сеть для классификации
+рукописных цифр</a></li>
+<li><a
+href="part03.html#sec:1.5"
+id="toc-sec:1.5"><span class="toc-section-number">1.5</span> Обучение с
+помощью градиентного спуска</a></li>
+<li><a
+href="part03.html#sec:1.7"
+id="toc-sec:1.7"><span class="toc-section-number">1.6</span> Реализация
+сети для классификации цифр</a></li>
+<li><a
+href="part03.html#sec:1.8"
+id="toc-sec:1.8"><span class="toc-section-number">1.7</span> На пути к
+глубокому обучению</a></li>
+</ul></li>
+<li><a
+href="part04.html"
+id="toc-как-работает-алгоритм-обратного-распространения-ошибки"><span
+class="toc-section-number">2</span> Как работает алгоритм обратного
+распространения ошибки</a>
+<ul>
+<li><a
+href="part04.html#разминка-быстрый-матричный-способ-вычисления-выхода-нейронной-сети"
+id="toc-разминка-быстрый-матричный-способ-вычисления-выхода-нейронной-сети"><span
+class="toc-section-number">2.1</span> Разминка: быстрый матричный способ
+вычисления выхода нейронной сети</a></li>
+<li><a
+href="part04.html#два-предположения-о-функции-стоимости"
+id="toc-два-предположения-о-функции-стоимости"><span
+class="toc-section-number">2.2</span> Два предположения о функции
+стоимости</a></li>
+<li><a
+href="part04.html#произведение-адамара-sodott"
+id="toc-произведение-адамара-sodott"><span
+class="toc-section-number">2.3</span> Произведение Адамара, <span
+class="math inline">\(s\odot{}t\)</span></a></li>
+<li><a
+href="part04.html#sec:2.4"
+id="toc-sec:2.4"><span class="toc-section-number">2.4</span> Четыре
+фундаментальных уравнения обратного распространения</a></li>
+<li><a
+href="part04.html#sec:2.5"
+id="toc-sec:2.5"><span class="toc-section-number">2.5</span>
+Доказательство четырёх фундаментальных уравнений (необязательный
+раздел)</a></li>
+<li><a
+href="part04.html#sec:2.6"
+id="toc-sec:2.6"><span class="toc-section-number">2.6</span> Алгоритм
+обратного распространения ошибки</a></li>
+<li><a
+href="part04.html#sec:2.7"
+id="toc-sec:2.7"><span class="toc-section-number">2.7</span> Код
+обратного распространения</a></li>
+<li><a
+href="part04.html#sec:2.8"
+id="toc-sec:2.8"><span class="toc-section-number">2.8</span> В каком
+смысле обратное распространение — быстрый алгоритм?</a></li>
+<li><a
+href="part04.html#sec:2.9"
+id="toc-sec:2.9"><span class="toc-section-number">2.9</span> Обратное
+распространение: общая картина</a></li>
+</ul></li>
+<li><a href="part05.html" id="toc-sec:3.1"><span
+class="toc-section-number">3</span> Как улучшить обучение нейронных
+сетей</a>
+<ul>
+<li><a
+href="part05.html#функция-стоимости-на-основе-перекрёстной-энтропии"
+id="toc-функция-стоимости-на-основе-перекрёстной-энтропии"><span
+class="toc-section-number">3.1</span> Функция стоимости на основе
+перекрёстной энтропии</a></li>
+<li><a href="part05.html#sec:3.2" id="toc-sec:3.2"><span
+class="toc-section-number">3.2</span> Переобучение и
+регуляризация</a></li>
+<li><a href="part05.html#sec:3.3" id="toc-sec:3.3"><span
+class="toc-section-number">3.3</span> Инициализация весов</a></li>
+<li><a href="part05.html#sec:3.4" id="toc-sec:3.4"><span
+class="toc-section-number">3.4</span> Снова о распознавании почерка:
+код</a></li>
+<li><a href="part05.html#sec:3.5" id="toc-sec:3.5"><span
+class="toc-section-number">3.5</span> Как выбирать гиперпараметры
+нейронной сети?</a></li>
+<li><a href="part05.html#sec:3.6" id="toc-sec:3.6"><span
+class="toc-section-number">3.6</span> Другие приёмы</a></li>
+</ul></li>
+<li><a
+href="part06.html"
+id="toc-наглядное-доказательство-того-что-нейронные-сети-могут-вычислить-любую-функцию"><span
+class="toc-section-number">4</span> Наглядное доказательство того, что
+нейронные сети могут вычислить любую функцию</a>
+<ul>
+<li><a
+href="part06.html#две-оговорки"
+id="toc-две-оговорки"><span class="toc-section-number">4.1</span> Две
+оговорки</a></li>
+<li><a
+href="part06.html#универсальность-для-одного-входа-и-одного-выхода"
+id="toc-универсальность-для-одного-входа-и-одного-выхода"><span
+class="toc-section-number">4.2</span> Универсальность для одного входа и
+одного выхода</a></li>
+<li><a
+href="part06.html#много-входных-переменных"
+id="toc-много-входных-переменных"><span
+class="toc-section-number">4.3</span> Много входных переменных</a></li>
+<li><a
+href="part06.html#за-пределами-сигмоидных-нейронов"
+id="toc-за-пределами-сигмоидных-нейронов"><span
+class="toc-section-number">4.4</span> За пределами сигмоидных
+нейронов</a></li>
+<li><a
+href="part06.html#исправляем-ступенчатые-функции"
+id="toc-исправляем-ступенчатые-функции"><span
+class="toc-section-number">4.5</span> Исправляем ступенчатые
+функции</a></li>
+<li><a
+href="part06.html#заключение"
+id="toc-заключение">Заключение</a></li>
+</ul></li>
+<li><a href="part07.html"
+id="toc-почему-глубокие-нейронные-сети-трудно-обучать"><span
+class="toc-section-number">5</span> Почему глубокие нейронные сети
+трудно обучать?</a>
+<ul>
+<li><a
+href="part07.html#проблема-исчезающего-градиента"
+id="toc-проблема-исчезающего-градиента"><span
+class="toc-section-number">5.1</span> Проблема исчезающего
+градиента</a></li>
+<li><a
+href="part07.html#что-вызывает-проблему-исчезающего-градиента-нестабильные-градиенты-в-глубоких-нейронных-сетях"
+id="toc-что-вызывает-проблему-исчезающего-градиента-нестабильные-градиенты-в-глубоких-нейронных-сетях"><span
+class="toc-section-number">5.2</span> Что вызывает проблему исчезающего
+градиента? Нестабильные градиенты в глубоких нейронных сетях</a></li>
+<li><a
+href="part07.html#нестабильные-градиенты-в-более-сложных-сетях"
+id="toc-нестабильные-градиенты-в-более-сложных-сетях"><span
+class="toc-section-number">5.3</span> Нестабильные градиенты в более
+сложных сетях</a></li>
+<li><a
+href="part07.html#другие-препятствия-на-пути-глубокого-обучения"
+id="toc-другие-препятствия-на-пути-глубокого-обучения"><span
+class="toc-section-number">5.4</span> Другие препятствия на пути
+глубокого обучения</a></li>
+</ul></li>
+<li><a href="part08.html" id="toc-глубокое-обучение"><span
+class="toc-section-number">6</span> Глубокое обучение</a>
+<ul>
+<li><a href="part08.html#subseq:cnn"
+id="toc-subseq:cnn"><span class="toc-section-number">6.1</span>
+Знакомство со свёрточными сетями</a></li>
+<li><a
+href="part08.html#свёрточные-нейронные-сети-на-практике"
+id="toc-свёрточные-нейронные-сети-на-практике"><span
+class="toc-section-number">6.2</span> Свёрточные нейронные сети на
+практике</a></li>
+<li><a href="part08.html#код-наших-свёрточных-сетей"
+id="toc-код-наших-свёрточных-сетей"><span
+class="toc-section-number">6.3</span> Код наших свёрточных
+сетей</a></li>
+<li><a
+href="part08.html#недавний-прогресс-в-распознавании-изображений"
+id="toc-недавний-прогресс-в-распознавании-изображений"><span
+class="toc-section-number">6.4</span> Недавний прогресс в распознавании
+изображений</a></li>
+<li><a
+href="part08.html#другие-подходы-к-глубоким-нейронным-сетям"
+id="toc-другие-подходы-к-глубоким-нейронным-сетям"><span
+class="toc-section-number">6.5</span> Другие подходы к глубоким
+нейронным сетям</a></li>
+<li><a href="part08.html#о-будущем-нейронных-сетей"
+id="toc-о-будущем-нейронных-сетей"><span
+class="toc-section-number">6.6</span> О будущем нейронных сетей</a></li>
+</ul></li>
+<li><a
+href="part09.html"
+id="toc-приложение.-существует-ли-простой-алгоритм-интеллекта">Приложение.
+Существует ли простой алгоритм интеллекта?</a></li>
+</ul>
+</nav>
+
+</article>
+</main>
+</body>
+</html>

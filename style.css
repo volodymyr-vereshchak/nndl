@@ -1,0 +1,109 @@
+:root {
+  --bg: #fdfcf9;
+  --fg: #1f1f1f;
+  --muted: #6b6b6b;
+  --accent: #9c3b1b;
+  --side-bg: #f3f0e8;
+  --rule: #ddd6c8;
+  --code-bg: #f5f2ea;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b19;
+    --fg: #e6e2d9;
+    --muted: #a39f95;
+    --accent: #e08a62;
+    --side-bg: #252420;
+    --rule: #3b3933;
+    --code-bg: #2a2925;
+  }
+  article img { background: #fff; border-radius: 3px; }
+}
+* { box-sizing: border-box; }
+html { font-size: 18px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Charter", "Georgia", "PT Serif", "Liberation Serif", serif;
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* боковая панель */
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: 290px; overflow-y: auto;
+  background: var(--side-bg);
+  border-right: 1px solid var(--rule);
+  padding: 1.4rem 1.1rem 2rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.78rem; line-height: 1.45;
+}
+.book-title { display: block; font-weight: 700; font-size: 1rem; color: var(--fg); }
+.book-author { color: var(--muted); margin: 0.2rem 0 1rem; }
+.toc ul { list-style: none; padding-left: 0; margin: 0; }
+.toc > ul > li { margin: 0.55rem 0; font-weight: 600; }
+.toc ul ul { padding-left: 0.9rem; font-weight: 400; }
+.toc ul ul li { margin: 0.2rem 0; }
+.toc a { color: var(--fg); }
+.toc a:hover { color: var(--accent); }
+.toc .toc-section-number { color: var(--muted); margin-right: 0.3em; }
+
+main { margin-left: 290px; padding: 1.5rem 2rem 4rem; }
+article, .pager, .cover { max-width: 760px; margin: 0 auto; }
+
+.menu-btn, #menu-toggle { display: none; }
+@media (max-width: 900px) {
+  html { font-size: 17px; }
+  .sidebar { transform: translateX(-100%); transition: transform .2s; z-index: 10; width: 82%; max-width: 320px; }
+  #menu-toggle:checked ~ .sidebar { transform: none; box-shadow: 0 0 30px rgba(0,0,0,.25); }
+  .menu-btn {
+    display: block; position: fixed; top: 10px; right: 12px; z-index: 11;
+    background: var(--side-bg); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 2px 10px; font-size: 1.2rem; cursor: pointer;
+  }
+  main { margin-left: 0; padding: 1rem 16px 3rem; }
+}
+
+/* навигация */
+.pager {
+  display: flex; justify-content: space-between; gap: 1rem;
+  font-family: system-ui, sans-serif; font-size: 0.8rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: 0.6rem; margin-bottom: 1rem;
+}
+.pager.bottom { border-bottom: 0; border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-top: 3rem; }
+.pager span:last-child { text-align: right; }
+
+/* обложка */
+.cover { text-align: center; padding: 2rem 0 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 2rem; }
+.cover h1 { font-size: 2.1rem; margin: 0; }
+.cover .subtitle { font-size: 1.2rem; color: var(--muted); margin: 0.3rem 0 1rem; }
+.cover .note { font-size: 0.85rem; color: var(--muted); }
+
+/* текст */
+h1, h2, h3, h4 { line-height: 1.25; }
+h1 { font-size: 1.9rem; margin-top: 0.5rem; }
+h2 { font-size: 1.4rem; margin-top: 2.4rem; }
+h3 { font-size: 1.15rem; margin-top: 2rem; }
+.header-section-number { color: var(--muted); margin-right: 0.35em; }
+p { margin: 0.9rem 0; }
+article img { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
+article p:has(> img:only-child) { text-align: center; }
+figure { margin: 1.5rem 0; text-align: center; }
+figcaption { font-size: 0.85rem; color: var(--muted); }
+blockquote { margin: 1rem 0; padding: 0.2rem 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 0.85em; background: var(--code-bg); padding: 0.05em 0.3em; border-radius: 3px; }
+pre { background: var(--code-bg); padding: 0.8rem 1rem; overflow-x: auto; border-radius: 4px; line-height: 1.4; }
+pre code { background: none; padding: 0; font-size: 0.8rem; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2rem 0; }
+table { border-collapse: collapse; margin: 1rem auto; }
+td, th { border: 1px solid var(--rule); padding: 0.3rem 0.6rem; }
+.footnotes { font-size: 0.85rem; border-top: 1px solid var(--rule); margin-top: 3rem; }
+section.footnotes hr { display: none; }
+h4, h5 { font-size: 1rem; margin-top: 1.6rem; }
+
+.toc-main { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.95rem; }
+.toc-main h2 { margin-top: 0; }
+.toc-main > ul > li { margin: 0.9rem 0; }
