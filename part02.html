@@ -13,12 +13,15 @@
       options: { enableMenu: false }
     };
   </script>
+  <script>try{if(localStorage.getItem("nndl-ru:sidebar")==="hidden")document.documentElement.classList.add("sb-hidden")}catch(e){}</script>
   <script defer src="mathjax.js"></script>
   <script defer src="bookmarks.js"></script>
 </head>
 <body>
 <input type="checkbox" id="menu-toggle" />
 <label for="menu-toggle" class="menu-btn" title="Оглавление">☰</label>
+<button class="sb-toggle" type="button" title="Скрыть / показать боковую панель" aria-label="Скрыть или показать боковую панель"
+  onclick="var h=document.documentElement;h.classList.toggle('sb-hidden');try{localStorage.setItem('nndl-ru:sidebar',h.classList.contains('sb-hidden')?'hidden':'shown')}catch(e){}"></button>
 <aside class="sidebar">
   <a class="book-title" href="index.html">Нейронные сети и глубокое обучение</a>
   <div class="book-author">Майкл Нильсен</div>
